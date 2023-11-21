@@ -7,15 +7,15 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.*;
 
-public class ChatSite {
+public class ChatSite2 {
 	public static void main(String args[]) throws IOException {
-		JFrame frame = new JFrame("Chat App");
+		JFrame frame = new JFrame("Chat App 2");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(640,640);
 		
 		JTextArea heading = new JTextArea();
 		heading.setBounds(10,10,600,50);
-		heading.setText("Chat Site");
+		heading.setText("Chat Site 2");
 		heading.setEditable(false);
 		frame.add(heading);
 		
@@ -34,7 +34,7 @@ public class ChatSite {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new Sender( outputArea,inputField).start();
+				new Sender2( outputArea,inputField).start();
 			}
 		});
 		frame.add(button);
@@ -42,20 +42,21 @@ public class ChatSite {
 		frame.setLayout(null);
 		frame.setVisible(true);
 		
-		new Receiver("Serve",outputArea).start();
+		new Receiver2("Serve",outputArea).start();
 	}
 }
 
-class Sender extends Thread{
+class Sender2 extends Thread{
 	
 	private JTextField inputField;
 	JTextArea outputArea;
 	
-	public Sender(JTextArea outputArea, JTextField inputField) {
+	public Sender2(JTextArea outputArea, JTextField inputField) {
 		this.outputArea=outputArea;
 		this.inputField = inputField;
+
 	}
-	
+
 	public void run() {
 		try {
 			DatagramSocket socket = new DatagramSocket();
@@ -68,7 +69,7 @@ class Sender extends Thread{
 			buf = send.getBytes();
 			outputArea.append("\n (Me)>"+send);
 			
-			DatagramPacket packet = new DatagramPacket(buf, buf.length, adress, 4446);
+			DatagramPacket packet = new DatagramPacket(buf, buf.length, adress, 4445);
 			socket.send(packet);
 			socket.close();
 		} catch (SocketException e) {
@@ -86,14 +87,14 @@ class Sender extends Thread{
 	}
 }
 
-class Receiver extends Thread{
+class Receiver2 extends Thread{
 	
 	private DatagramSocket socket = null;
 
 	JTextArea outputArea;
-	public Receiver(String name,JTextArea outputArea) throws IOException {
+	public Receiver2(String name,JTextArea outputArea) throws IOException {
 		super(name);
-		socket = new DatagramSocket(4445); //ChatSite-Server has different port from ChatSite2-Server2
+		socket = new DatagramSocket(4446);
 		this.outputArea = outputArea;
 	}
 	
@@ -105,12 +106,10 @@ class Receiver extends Thread{
 			DatagramPacket packet= new DatagramPacket(buf, buf.length);
 			InetAddress address = packet.getAddress();
 			int port = packet.getPort();
-			
 			socket.receive(packet);
 		
 			String received = new String(packet.getData());
-			outputArea.append("\n (Friend)>>"+received);
-			//outputArea.append("\n ("+ port+")>>"+received);
+			outputArea.append("\n ("+ port+")>>"+received);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
