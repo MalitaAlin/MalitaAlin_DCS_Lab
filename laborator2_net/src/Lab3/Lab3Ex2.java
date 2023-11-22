@@ -112,7 +112,7 @@ public class Lab3Ex2 {
 
 		(new Thread(executor)).start();
 
-		for (int i = 0; i < 100; i++) { //code runs 100 times
+		for (int i = 0; i < 1080; i++) { //100//now multiple of 360
 
 			// constructing the dictionary collection (map) for inputs
 
@@ -126,19 +126,10 @@ public class Lab3Ex2 {
 				inps.put(p1Inp, driver.fuzzifie(i/100.0));
 				inps.put(p0Inp, driver.fuzzifie(i/-100.0)); }*/
 
-
 				// placing the fuzzyficated token
 
-				inps.put(p0Inp, driver.fuzzifie(Math.sin(i)));
-
-				inps.put(p1Inp, driver.fuzzifie(Math.cos(i)));
-
-			} else {
-
-				inps.put(p1Inp, driver.fuzzifie(Math.sin(i)));
-
-				inps.put(p0Inp, driver.fuzzifie(Math.cos(i)));
-
+				inps.put(p0Inp, driver.fuzzifie(Math.sin(Math.toRadians(i))));
+                inps.put(p1Inp, driver.fuzzifie(Math.cos(Math.toRadians(i))));
 			}
 
 			// placing the input tokens for the executer

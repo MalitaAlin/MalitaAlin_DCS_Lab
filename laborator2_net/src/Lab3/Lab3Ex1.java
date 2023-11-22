@@ -23,6 +23,7 @@ public class Lab3Ex1 {
 		nlLine.put(FuzzyValue.PM, FuzzyValue.NL);
 		nlLine.put(FuzzyValue.PL, FuzzyValue.ZR);
 
+
 		Map<FuzzyValue, FuzzyValue> nmLine = new EnumMap<>(FuzzyValue.class);
 		ruleTable1.put(FuzzyValue.NM, nmLine);
 		nmLine.put(FuzzyValue.NL, FuzzyValue.PL);
@@ -30,6 +31,7 @@ public class Lab3Ex1 {
 		nmLine.put(FuzzyValue.ZR, FuzzyValue.PL);
 		nmLine.put(FuzzyValue.PM, FuzzyValue.PL);
 		nmLine.put(FuzzyValue.PL, FuzzyValue.NM);
+
 
 		Map<FuzzyValue, FuzzyValue> zrLine = new EnumMap<>(FuzzyValue.class);
 		ruleTable1.put(FuzzyValue.ZR, zrLine);
@@ -55,7 +57,6 @@ public class Lab3Ex1 {
 		plLine.put(FuzzyValue.PM, FuzzyValue.NM);
 		plLine.put(FuzzyValue.PL, FuzzyValue.PL);
 
-		
 		// construct tabela2 FLRS for inversor, the second output
 		Map<FuzzyValue, Map<FuzzyValue, FuzzyValue>> ruleTable2 = new EnumMap<>(FuzzyValue.class);
 
@@ -74,7 +75,7 @@ public class Lab3Ex1 {
 		nmLine.put(FuzzyValue.ZR, FuzzyValue.NM);
 		nmLine.put(FuzzyValue.PM, FuzzyValue.NM);
 		nmLine.put(FuzzyValue.PL, FuzzyValue.PL);
-
+		
 		zrLine = new EnumMap<>(FuzzyValue.class);
 		ruleTable2.put(FuzzyValue.ZR, zrLine);
 		zrLine.put(FuzzyValue.NL, FuzzyValue.PM);
@@ -90,7 +91,7 @@ public class Lab3Ex1 {
 		pmLine.put(FuzzyValue.ZR, FuzzyValue.PM);
 		pmLine.put(FuzzyValue.PM, FuzzyValue.PM);
 		pmLine.put(FuzzyValue.PL, FuzzyValue.NL);
-
+		
 		plLine = new EnumMap<>(FuzzyValue.class);
 		ruleTable2.put(FuzzyValue.PL, plLine);
 		plLine.put(FuzzyValue.NL, FuzzyValue.ZR);
@@ -98,11 +99,113 @@ public class Lab3Ex1 {
 		plLine.put(FuzzyValue.ZR, FuzzyValue.ZR);
 		plLine.put(FuzzyValue.PM, FuzzyValue.ZR);
 		plLine.put(FuzzyValue.PL, FuzzyValue.NM);
-
+		
 		// returning FLRS table with two inputs and two outputs
 
 		return new TwoXTwoTable(ruleTable1, ruleTable2);
 	}
+	
+	public static TwoXTwoTable createAdder() {
+    
+		// construct tabela1 FLRS for adder, first output
+		Map<FuzzyValue, Map<FuzzyValue, FuzzyValue>> ruleTable1 = new EnumMap<>(FuzzyValue.class);
+
+	        Map<FuzzyValue, FuzzyValue> nlLine = new EnumMap<>(FuzzyValue.class);
+	       ruleTable1.put(FuzzyValue.NL, nlLine);
+	        nlLine.put(FuzzyValue.NL, FuzzyValue.NL);
+	        nlLine.put(FuzzyValue.NM, FuzzyValue.NL);
+	        nlLine.put(FuzzyValue.ZR, FuzzyValue.NL);
+	        nlLine.put(FuzzyValue.PM, FuzzyValue.NM);
+	        nlLine.put(FuzzyValue.PL, FuzzyValue.ZR);
+
+
+	        Map<FuzzyValue, FuzzyValue> nmLine = new EnumMap<>(FuzzyValue.class);
+	        ruleTable1.put(FuzzyValue.NM, nmLine);
+	        nmLine.put(FuzzyValue.NL, FuzzyValue.NL);
+	        nmLine.put(FuzzyValue.NM, FuzzyValue.NL);
+	        nmLine.put(FuzzyValue.ZR, FuzzyValue.NM);
+	        nmLine.put(FuzzyValue.PM, FuzzyValue.ZR);
+	        nmLine.put(FuzzyValue.PL, FuzzyValue.PM);
+
+
+	        Map<FuzzyValue, FuzzyValue> zrLine = new EnumMap<>(FuzzyValue.class);
+	        ruleTable1.put(FuzzyValue.ZR, zrLine);
+	        zrLine.put(FuzzyValue.NL, FuzzyValue.NL);
+	        zrLine.put(FuzzyValue.NM, FuzzyValue.NM);
+	        zrLine.put(FuzzyValue.ZR, FuzzyValue.ZR);
+	        zrLine.put(FuzzyValue.PM, FuzzyValue.PM);
+	        zrLine.put(FuzzyValue.PL, FuzzyValue.PL);
+
+
+	        Map<FuzzyValue, FuzzyValue> pmLine = new EnumMap<>(FuzzyValue.class);
+	        ruleTable1.put(FuzzyValue.PM, pmLine);
+	        pmLine.put(FuzzyValue.NL, FuzzyValue.NM);
+	        pmLine.put(FuzzyValue.NM, FuzzyValue.ZR);
+	        pmLine.put(FuzzyValue.ZR, FuzzyValue.PM);
+	        pmLine.put(FuzzyValue.PM, FuzzyValue.PL);
+	        pmLine.put(FuzzyValue.PL, FuzzyValue.PL);
+
+
+	        Map<FuzzyValue, FuzzyValue> plLine = new EnumMap<>(FuzzyValue.class);
+	        ruleTable1.put(FuzzyValue.PL, plLine);
+	        plLine.put(FuzzyValue.NL, FuzzyValue.ZR);
+	        plLine.put(FuzzyValue.NM, FuzzyValue.PM);
+	        plLine.put(FuzzyValue.ZR, FuzzyValue.PL);
+	        plLine.put(FuzzyValue.PM, FuzzyValue.PL);
+	        plLine.put(FuzzyValue.PL, FuzzyValue.PL);
+
+	        //------------------ TABLE 2 -----------------
+	        // construct tabela2 FLRS for inversor, the second output
+
+	        Map<FuzzyValue, Map<FuzzyValue, FuzzyValue>> ruleTable2 = new EnumMap<>(FuzzyValue.class);
+
+	        Map<FuzzyValue, FuzzyValue> nlLine2 = new EnumMap<>(FuzzyValue.class);
+	        ruleTable2.put(FuzzyValue.NL, nlLine2);
+	        nlLine2.put(FuzzyValue.NL, FuzzyValue.ZR);
+	        nlLine2.put(FuzzyValue.NM, FuzzyValue.NM);
+	        nlLine2.put(FuzzyValue.ZR, FuzzyValue.NL);
+	        nlLine2.put(FuzzyValue.PM, FuzzyValue.NL);
+	        nlLine2.put(FuzzyValue.PL, FuzzyValue.NL);
+
+	        Map<FuzzyValue, FuzzyValue> nmLine2 = new EnumMap<>(FuzzyValue.class);
+	        // nmLine = new EnumMap<>(FuzzyValue.class);
+	        ruleTable2.put(FuzzyValue.NM, nmLine2);
+	        nmLine2.put(FuzzyValue.NL, FuzzyValue.PM);
+	        nmLine2.put(FuzzyValue.NM, FuzzyValue.ZR);
+	        nmLine2.put(FuzzyValue.ZR, FuzzyValue.NM);
+	        nmLine2.put(FuzzyValue.PM, FuzzyValue.NL);
+	        nmLine2.put(FuzzyValue.PL, FuzzyValue.NL);
+
+	        Map<FuzzyValue, FuzzyValue> zrLine2 = new EnumMap<>(FuzzyValue.class);
+	        //zrLine = new EnumMap<>(FuzzyValue.class);
+	        ruleTable2.put(FuzzyValue.ZR, zrLine2);
+	        zrLine2.put(FuzzyValue.NL, FuzzyValue.PL);
+	        zrLine2.put(FuzzyValue.NM, FuzzyValue.PM);
+	        zrLine2.put(FuzzyValue.ZR, FuzzyValue.ZR);
+	        zrLine2.put(FuzzyValue.PM, FuzzyValue.NM);
+	        zrLine2.put(FuzzyValue.PL, FuzzyValue.NL);
+
+	        Map<FuzzyValue, FuzzyValue> pmLine2 = new EnumMap<>(FuzzyValue.class);
+	        //pmLine = new EnumMap<>(FuzzyValue.class);
+	        ruleTable2.put(FuzzyValue.PM, pmLine2);
+	        pmLine2.put(FuzzyValue.NL, FuzzyValue.PL);
+	        pmLine2.put(FuzzyValue.NM, FuzzyValue.PL);
+	        pmLine2.put(FuzzyValue.ZR, FuzzyValue.PM);
+	        pmLine2.put(FuzzyValue.PM, FuzzyValue.ZR);
+	        pmLine2.put(FuzzyValue.PL, FuzzyValue.NM);
+
+	        Map<FuzzyValue, FuzzyValue> plLine2 = new EnumMap<>(FuzzyValue.class);
+	        //plLine = new EnumMap<>(FuzzyValue.class);
+	        ruleTable2.put(FuzzyValue.PL, plLine2);
+	        plLine2.put(FuzzyValue.NL, FuzzyValue.PL);
+	        plLine2.put(FuzzyValue.NM, FuzzyValue.PL);
+	        plLine2.put(FuzzyValue.ZR, FuzzyValue.PL);
+	        plLine2.put(FuzzyValue.PM, FuzzyValue.PM);
+	        plLine2.put(FuzzyValue.PL, FuzzyValue.ZR);
+		
+		return new TwoXTwoTable(ruleTable1, ruleTable2);
+	}
+	
 
 	public static void main(String[] args) {
 		try {
@@ -123,6 +226,8 @@ public class Lab3Ex1 {
 
 		// creating FLRS table for tow inputs and two outputs
 		TwoXTwoTable inversor = createInversor();
+		// Adder/Subtractor
+		TwoXTwoTable adder = createAdder();
 		System.out.println("Give inputs x1 and  x2: (separated by a space): ");
 		inputLine = in.readLine();
 		// giving the two inputs
@@ -136,10 +241,12 @@ public class Lab3Ex1 {
 
 		// executing the FLRS table
 		FuzzyToken[] out = inversor.execute(inpToken1, inpToken2);
-
+		FuzzyToken[] out2 = adder.execute(inpToken1, inpToken2);
 		// displaying the defuzzyfication results
-		System.out.println("Outputs: x3 = " + decfor.format(fuzDefuz.defuzzify(out[0]))+
+		System.out.println("Inverse Outputs: x3 = " + decfor.format(fuzDefuz.defuzzify(out[0]))+
 				" | x4 = " + decfor.format(fuzDefuz.defuzzify(out[1])));
+		System.out.println("Adder Outputs: x3 = " + decfor.format(fuzDefuz.defuzzify(out2[0]))+
+				" | x4 = " + decfor.format(fuzDefuz.defuzzify(out2[1])));
 	}
 		catch (IOException e) {
 		// TODO Auto-generated catch block
