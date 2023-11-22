@@ -35,8 +35,9 @@ public class Lab3Ex2 {
 	// FLRS table for T1 that makes the selection according to the result P0-P1
 	// (positive or negative)
 
-	String separator = "{[<NL,FF><NL,FF><FF,FF><FF,PL><FF,PL>]}";
-
+	//String separator = "{[<NL,FF><NL,FF><FF,FF><FF,PL><FF,PL>]}";
+	//Modified for c)
+	  String separator = "{[<FF,NL><FF,NL><FF,FF><PL,FF><PL,FF>]}";
 	public Lab3Ex2() {
 		// the Petri network is being constructed
 		TableParser parser = new TableParser();
@@ -57,13 +58,19 @@ public class Lab3Ex2 {
 		// add the places and arc corresponding to the Petri Net
 		int p2 = petriNet.addPlace();
 		petriNet.addArcFromTransitionToPlace(t0, p2);
+		
 		int t1 = petriNet.addTransition(0,
 		parser.parseOneXTwoTable(separator));
+		
 		petriNet.addArcFromPlaceToTransition(p2, t1, 1.0);
+		
 		int p3 = petriNet.addPlace();
 		petriNet.addArcFromTransitionToPlace(t1, p3);
+		
 		int p4 = petriNet.addPlace();
 		petriNet.addArcFromTransitionToPlace(t1, p4);
+		
+		//MODIFIED TRANSITION t2 and t3
 		int t2Out = petriNet.addOuputTransition(OneXOneTable.defaultTable());
 		petriNet.addArcFromPlaceToTransition(p3, t2Out, 1.0);
 
@@ -77,7 +84,6 @@ public class Lab3Ex2 {
 		petriNet.addActionForOuputTransition(t2Out, cons);
 
 		int t3Out = petriNet.addOuputTransition(OneXOneTable.defaultTable());
-
 		petriNet.addArcFromPlaceToTransition(p4, t3Out, 1.0);
 
 		// associating an action of the output transition t3
@@ -106,13 +112,20 @@ public class Lab3Ex2 {
 
 		(new Thread(executor)).start();
 
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 100; i++) { //code runs 100 times
 
 			// constructing the dictionary collection (map) for inputs
 
 			Map<Integer, FuzzyToken> inps = new HashMap<>();
 
 			if (i % 10 < 5) {
+				/* Original Code before introducing sin and cos signals
+				 * inps.put(p0Inp, driver.fuzzifie(i/100.0));
+				inps.put(p1Inp, driver.fuzzifie(i/-100.0));
+			} else {
+				inps.put(p1Inp, driver.fuzzifie(i/100.0));
+				inps.put(p0Inp, driver.fuzzifie(i/-100.0)); }*/
+
 
 				// placing the fuzzyficated token
 

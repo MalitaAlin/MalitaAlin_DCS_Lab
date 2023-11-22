@@ -1,5 +1,9 @@
 package Lab3;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.text.DecimalFormat;
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -101,20 +105,31 @@ public class Lab3Ex1 {
 	}
 
 	public static void main(String[] args) {
+		try {
+		 DecimalFormat decfor = new DecimalFormat("0.00");  
 
-		double w1 = 0.33;
-		double w2 = 1.5;
-
+		BufferedReader in = new BufferedReader(
+	            new InputStreamReader(System.in));
+		String inputLine="";
+		System.out.println("Give weights w1 and w2: (separated by a space): ");
+		inputLine = in.readLine();
+		
+        String[] weights = inputLine.split(" ");
+		double w1 =Double.parseDouble(weights[0]) ;
+		double w2 = Double.parseDouble(weights[1]);
+		System.out.println("The weights are: w1="+w1+" | w2="+w2);
 		// specifying the limits for fuzzyfication, defuzzyfication
 		FuzzyDefuzzy fuzDefuz = new FuzzyDefuzzy(-1.0, -0.5, 0.0, 0.5, 1.0);
 
 		// creating FLRS table for tow inputs and two outputs
 		TwoXTwoTable inversor = createInversor();
-
+		System.out.println("Give inputs x1 and  x2: (separated by a space): ");
+		inputLine = in.readLine();
 		// giving the two inputs
-		double x1 = -0.33;
-		double x2 = 0.12;
-
+		String[] inputs = inputLine.split(" ");
+		double x1 = Double.parseDouble(inputs[0]);
+		double x2 = Double.parseDouble(inputs[1]);
+		System.out.println("The inputs are: x1="+x1+" | x2="+x2);
 		// multiplying the inputs with the amplification and fuzzyfication factors
 		FuzzyToken inpToken1 = fuzDefuz.fuzzyfie(x1 * w1);
 		FuzzyToken inpToken2 = fuzDefuz.fuzzyfie(x2 * w2);
@@ -123,8 +138,13 @@ public class Lab3Ex1 {
 		FuzzyToken[] out = inversor.execute(inpToken1, inpToken2);
 
 		// displaying the defuzzyfication results
-		System.out.println("x3 :: " + fuzDefuz.defuzzify(out[0]));
-		System.out.println("x4 :: " + fuzDefuz.defuzzify(out[1]));
+		System.out.println("Outputs: x3 = " + decfor.format(fuzDefuz.defuzzify(out[0]))+
+				" | x4 = " + decfor.format(fuzDefuz.defuzzify(out[1])));
+	}
+		catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} //read from console
 	}
 
 }
