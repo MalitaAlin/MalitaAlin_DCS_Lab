@@ -1,0 +1,9 @@
+C:\Users\Alin\Documents\GitHub\MalitaAlin_DCS_Lab\laborator2_net\src:
+-> Lab1exercise1
+-> Lab2exercise2
+-> Lab3
+-> Lab4 & Lab4ex2
+
+MalitaAlin_DCS_Lab\lab_OETPN_OERTPN_Framework\New OETPN\New OETPN\src:
+-> Lab5
+-> Lab6

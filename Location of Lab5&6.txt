@@ -1,3 +1,0 @@
-MalitaAlin_DCS_Lab\lab_OETPN_OERTPN_Framework\New OETPN\New OETPN\src:
--> Lab5
--> Lab6
