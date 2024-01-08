@@ -52,7 +52,7 @@ public class Lab5_Ex3_1 {
 
 		DataTransfer p35 = new DataTransfer();
 		p35.SetName("p35");
-		p35.Value = new TransferOperation("localhost", "1080", "p6");
+		p35.Value = new TransferOperation("PC1 ip goes here", "1080", "p6");
 		pn3.PlaceList.add(p35);
 
 		DataFloat p36 = new DataFloat();
@@ -102,6 +102,8 @@ public class Lab5_Ex3_1 {
 		t33.InputPlaceName.add("p34");
 
 		Condition T33Ct1 = new Condition(t33, "p34", TransitionCondition.NotNull);
+		Condition T33Ct2 = new Condition(t33, "p34", TransitionCondition.LessThan,"constVal32");
+		T33Ct1.SetNextCondition(LogicConnector.AND, T33Ct2);
 
 		GuardMapping grdT33 = new GuardMapping();
 		grdT33.condition = T33Ct1;
@@ -167,7 +169,7 @@ public class Lab5_Ex3_1 {
 
 		DataTransfer p44 = new DataTransfer();
 		p44.SetName("p44");
-		p44.Value = new TransferOperation("localhost","1080","p6");
+		p44.Value = new TransferOperation("PC1 ip goes here","1080","p6");
 		pn4.PlaceList.add(p44);
 
 
@@ -211,7 +213,7 @@ public class Lab5_Ex3_1 {
 		t43.TransitionName = "t43";
 		t43.InputPlaceName.add("p44");
 
-		Condition T43Ct1 = new Condition(t43, "p43", TransitionCondition.LessThan, "constVal41");
+		Condition T43Ct1 = new Condition(t43, "p43", TransitionCondition.LessThan, "constVal42");
 
 		GuardMapping grdT43 = new GuardMapping();
 		grdT43.condition = T43Ct1;
@@ -277,7 +279,7 @@ public class Lab5_Ex3_1 {
 
 		DataFloat p2 = new DataFloat();
 		p2.SetName("p2");
-		p2.SetValue(2.0f); //testing
+		p2.SetValue(1.0f); //testing
 		pn.PlaceList.add(p2);
 
 		DataSubPetriNet p3 = new DataSubPetriNet();
@@ -286,7 +288,7 @@ public class Lab5_Ex3_1 {
 
 		DataTransfer p3Send = new DataTransfer();
 		p3Send.SetName("p3Send");
-		p3Send.Value = new TransferOperation("localhost", "1090", "p22");
+		p3Send.Value = new TransferOperation("PC2 ip goes here", "1090", "p22");
 		pn.PlaceList.add(p3Send);
 
 		DataFloat p4 = new DataFloat();
@@ -321,9 +323,7 @@ public class Lab5_Ex3_1 {
 
 		grdT1.Activations.add(new Activation(t1, "PN3", TransitionOperation.Copy, "p3"));
 		grdT1.Activations.add(new Activation(t1, "p1", TransitionOperation.Move, "p4"));
-		////////////////////????
-		grdT1.Activations.add(new Activation(t1, "p2", TransitionOperation.Move, "p41"));/////////////////////
-/////////////////
+		grdT1.Activations.add(new Activation(t1, "p2", TransitionOperation.Move, "p3-p31"));
 		
 		t1.GuardMappingList.add(grdT1);
 		
@@ -337,10 +337,8 @@ public class Lab5_Ex3_1 {
 
 		grdT12.Activations.add(new Activation(t1, "PN4", TransitionOperation.Copy, "p3"));
 		grdT12.Activations.add(new Activation(t1, "p1", TransitionOperation.Move, "p4"));
-		////////////????
-		grdT12.Activations.add(new Activation(t1, "p2", TransitionOperation.Move, "p41"));///////////////////
-///////////
-		
+		grdT1.Activations.add(new Activation(t1, "p2", TransitionOperation.Move, "p3-p41"));
+
 		t1.GuardMappingList.add(grdT12);
 		
 		t1.Delay = 0;
